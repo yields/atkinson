@@ -1,11 +1,5 @@
 
 /**
- * dependencies.
- */
-
-var emitter = require('emitter');
-
-/**
  * default storage.
  */
 
@@ -44,12 +38,6 @@ function Atkinson(prefix, el){
   this.prefix = prefix;
   this.el = el;
 }
-
-/**
- * mixin emitter.
- */
-
-emitter(Atkinson.prototype);
 
 /**
  * remember all input values.
