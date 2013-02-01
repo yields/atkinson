@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Atkinson</title>
+    <script type="text/javascript" src="../build/build.js"></script>
+    <style type="text/css">
+      form {
+        background: #fff;
+        width: 500px;
+        height: 500px;
+      }.field {
+        margin-bottom: 15px;
+      }label {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+
+    <form action="">
+      <div class="field">
+        <label for="">text</label>
+        <input type="text" name='text'>
+      </div>
+      <div class="field">
+        <label for="">checkbox</label>
+        <input type="checkbox" name='checkbox'>
+      </div>
+      <div class="field">
+        <label for="">radio</label>
+        <input type="radio" name="bar" value="one"> one
+        <input type="radio" name="bar" value="two"> two
+      </div>
+      <div class="field">
+        <label for="">textarea</label>
+        <textarea name="texarea" id="" cols="30" rows="10"></textarea>
+      </div>
+      <div class="field">
+        <label for="">select</label>
+        <select name="select" id="">
+          <option value="1">one</option>
+          <option value="2">two</option>
+          <option value="3">three</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="">multiple</label>
+        <select name="multiple[]" multiple>
+          <option value="1">one</option>
+          <option value="2">two</option>
+          <option value="3">three</option>
+        </select>
+      </div>
+      <button id="save" role='button'>atkinson.save()</button>
+      <button id="restore">atkinson.restore()</button>
+      <button id="clean">atkinson.clean()</button>
+      <br>
+    </form>
+
+    <script type="text/javascript">
+      var Atkinson = require('atkinson');
+      var form = document.getElementsByTagName('form')[0];
+      var atkinson = new Atkinson(form);
+      
+      // click
+      function click(name, fn){
+        form
+          .querySelector('#' + name)
+          .addEventListener('click', fn, false);
+      }
+
+      // save
+      click('save', function(e){
+        e.preventDefault();
+        atkinson.save();
+      });
+
+      // restore
+      click('restore', function(e){
+        e.preventDefault();
+        atkinson.restore();
+      });
+
+      // clean
+      click('clean', function(e){
+        e.preventDefault();
+        atkinson.clean();
+      });
+    </script>
+  </body>
+</html>

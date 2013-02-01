@@ -1,0 +1,15 @@
+{
+  "name": "atkinson",
+  "repo": "yields/atkinson",
+  "description": "atkinson can remember form input data across requests",
+  "version": "0.0.1",
+  "keywords": ["atkinson", "form", "sisyphus"],
+  "dependencies": {
+    "component/emitter": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
