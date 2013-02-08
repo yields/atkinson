@@ -10,10 +10,10 @@ Atkinson.store = window.localStorage || {};
  */
 
 Atkinson.selector = 'input' + ([
-  ':not([type^="submit"])',
-  ':not([type^="image"])',
-  ':not([type^="password"])',
-  ':not([type^="hidden"])',
+  ':not([type="submit"])',
+  ':not([type="image"])',
+  ':not([type="password"])',
+  ':not([type="hidden"])',
   ':not([disabled])',
   ', select, textarea'
 ]).join('');
