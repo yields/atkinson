@@ -3,8 +3,15 @@
   "repo": "yields/atkinson",
   "description": "atkinson can remember form input data across requests",
   "version": "0.1.0",
-  "keywords": ["atkinson", "form", "sisyphus"],
-  "dependencies": {},
+  "keywords": [
+    "atkinson",
+    "form",
+    "sisyphus"
+  ],
+  "dependencies": {
+    "component/value": "*",
+    "yields/unserialize": "*"
+  },
   "development": {},
   "license": "MIT",
   "scripts": [
