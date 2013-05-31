@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Atkinson</title>
+    <script type="text/javascript" src="../build/build.js"></script>
+    <style type="text/css">
+      form {
+        background: #fff;
+        width: 500px;
+        height: 500px;
+      }.field {
+        margin-bottom: 15px;
+      }label {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+
+    <form action="">
+      <div class="field">
+        <label for="">text</label>
+        <input type="text" name='text'>
+      </div>
+      <div class="field">
+        <label for="">checkbox</label>
+        <input type="checkbox" name='checkbox'>
+      </div>
+      <div class="field">
+        <label for="">radio</label>
+        <input type="radio" name="bar" value="one"> one
+        <input type="radio" name="bar" value="two"> two
+      </div>
+      <div class="field">
+        <label for="">textarea</label>
+        <textarea name="texarea" id="" cols="30" rows="10"></textarea>
+      </div>
+      <div class="field">
+        <label for="">select</label>
+        <select name="select" id="">
+          <option value="1">one</option>
+          <option value="2">two</option>
+          <option value="3">three</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="">multiple</label>
+        <select name="multiple[]" multiple>
+          <option value="1">one</option>
+          <option value="2">two</option>
+          <option value="3">three</option>
+        </select>
+      </div>
+    </form>
+
+    <script type="text/javascript">
+      var Atkinson = require('atkinson');
+      var atkinson = new Atkinson(document.querySelector('form'));
+
+      atkinson.restore();
+      setInterval(function(){
+        atkinson.save();
+      }, 100);
+    </script>
+  </body>
+</html>
