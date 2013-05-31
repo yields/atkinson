@@ -1,7 +1,7 @@
 
 # Atkinson
 
-  Atkinson can remember form input data across requests.
+  Atkinson can remember form input data across requests, [demo](http://yields.github.io/atkinson/index.html).
 
 ## Installation
 
