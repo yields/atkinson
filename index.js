@@ -113,7 +113,7 @@ Atkinson.prototype.clean = function(){
     , key, val;
 
   for (var i = 0; i < len; ++i) {
-    key = this.prefix + ':' + all[i].name;
+    key = this.prefix + ':' + i + ':' + all[i].name;
     val = store[key];
     if (!val) continue;
     delete store[key];
