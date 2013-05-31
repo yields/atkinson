@@ -1,1 +1,79 @@
-My Page
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>atkinson</title>
+    <style>
+
+      * {
+        -webkit-box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Helvetica Neue';
+        font-weight: 200;
+        padding: 100px;
+      }
+
+      form {
+        width: 400px;
+      }
+
+      input,
+      textarea {
+        font-family: 'inherit';
+        width: 100%;
+        margin: 30px 0;
+        border: 0 none;
+        border-bottom: 1px solid #ddd;
+        display: block;
+        padding: 8px;
+        font-size: 18px;
+        font-style: italic;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: 0 none;
+        border-bottom-color: #ccc;
+        font-style: normal;
+      }
+
+      legend {
+        font-size: 28px;
+      }
+    </style>
+    <script src='build/build.js'></script>
+  </head>
+  <body>
+    <form id='atkinson-demo'>
+      <legend>Atkinson</legend>
+      <input type='text' name='input' placeholder='input'>
+      <input type='number' name='number' placeholder='number'>
+      <textarea name='textarea' placeholder='textarea'></textarea>
+      <button>clean</button>
+    </form>
+
+    <script>
+      var Atkinson = require('atkinson');
+      var form = document.getElementsByTagName('form')[0];
+      var atkinson = new Atkinson(form);
+      var btn = document.getElementsByTagName('button')[0];
+
+      // clean
+      btn.onclick = function(e){
+        e.preventDefault();
+        atkinson.clean();
+        location.reload();
+      };
+
+      // restore
+      atkinson.restore();
+
+      // save on changes
+      form.addEventListener('input', function(){
+        atkinson.save();
+        console.log('saved changes!');
+      }, false);
+    </script>
+  </body>
+</html>
