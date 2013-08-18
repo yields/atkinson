@@ -1,4 +1,9 @@
 
+0.3.0 / 2013-08-19
+==================
+
+ * export component/value as adapter, alias clean to clear
+
 0.2.0 / 2013-06-01
 ==================
 
