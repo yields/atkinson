@@ -7,13 +7,13 @@ var unserialize = require('unserialize')
   , value = require('value');
 
 /**
- * default storage.
+ * Export `store`.
  */
 
 Atkinson.store = window.localStorage || {};
 
 /**
- * selector.
+ * Export `selector`.
  */
 
 Atkinson.selector = 'input' + ([
@@ -24,6 +24,12 @@ Atkinson.selector = 'input' + ([
   ':not([disabled])',
   ', select, textarea'
 ]).join('');
+
+/**
+ * Export `adapter`.
+ */
+
+Atkinson.adapter = value;
 
 /**
  * export `Atkinson`
@@ -41,19 +47,17 @@ module.exports = Atkinson;
 function Atkinson(prefix, el){
   this.selector = Atkinson.selector;
   this.store = Atkinson.store;
-  if (!el) el = prefix, prefix = el.id;
+  if (!el) el = prefix, prefix = el.action;
+  this.value = Atkinson.adapter;
   this.prefix = prefix;
   this.el = el;
 }
 
 /**
- * remember all input values.
- *
- * Atkinson will store them in localStorage,
- * you may call `recall` on page load in order
- * for Atkinson to fill all inputs automatically.
+ * Remember all input values.
  *
  * @return {Atkinson}
+ * @api public
  */
 
 Atkinson.prototype.save = function(){
@@ -64,7 +68,7 @@ Atkinson.prototype.save = function(){
 
   for (var i = 0; i < len; ++i) {
     key = this.prefix + ':' + i + ':' + all[i].name;
-    val = JSON.stringify(value(all[i]));
+    val = JSON.stringify(this.value(all[i]));
     store[key] = val;
   }
 
@@ -72,12 +76,10 @@ Atkinson.prototype.save = function(){
 };
 
 /**
- * recall all remembered data.
- *
- * the method fills the form fields automatically,
- * with the remembered values.
+ * Restore all stored data to the form.
  *
  * @return {Atkinson}
+ * @api public
  */
 
 Atkinson.prototype.restore = function(){
@@ -91,21 +93,20 @@ Atkinson.prototype.restore = function(){
     key = this.prefix + ':' + i + ':' + all[i].name;
     val = unserialize(store[key]);
     if (null == val) continue;
-    value(all[i], val);
+    this.value(all[i], val);
   }
 
   return this;
 };
 
 /**
- * forget all remembered data.
- *
- * the method will be called automatically
- * when the form is submitted to the server.
+ * Clear all stored data.
  *
  * @return {Atkinson}
+ * @api public
  */
 
+Atkinson.prototype.clear =
 Atkinson.prototype.clean = function(){
   var all = this.el.querySelectorAll(this.selector)
     , len = all.length
